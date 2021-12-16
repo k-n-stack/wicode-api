@@ -14,7 +14,7 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id('id_message');
+            $table->id();
             $table->text('text');
             $table->text('title');
             $table->softDeletes();
