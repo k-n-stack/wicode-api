@@ -17,10 +17,13 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->text('title');
             $table->text('description');
-            $table->text('text');
+            $table->text('text_body');
             $table->text('image');
+            $table->boolean('is_valid');
             $table->softDeletes();
             $table->timestamps();
+            // foreign
+            $table->unsignedBigInteger('user_id');
         });
     }
 

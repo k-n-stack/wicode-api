@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateArticleCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('text_body');
+        Schema::create('article_category', function (Blueprint $table) {
             $table->timestamps();
             // foreign
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('category_id');
         });
+    
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('categorie_article');
     }
 }
