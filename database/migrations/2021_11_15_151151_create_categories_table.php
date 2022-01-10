@@ -19,6 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->text('description');
             $table->text('image')->nullable();
             $table->timestamps();
+            // foreign
+            $table->unsignedBigInteger('parent_id')->nullable();
         });
     }
 

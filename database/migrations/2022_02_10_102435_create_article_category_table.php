@@ -14,11 +14,10 @@ class CreateArticleCategoryTable extends Migration
     public function up()
     {
         Schema::create('article_category', function (Blueprint $table) {
+            $table->timestamps();
+            // foreign
             $table->unsignedBigInteger('article_id');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('article_id')->references('id')->on('articles');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->timestamps();
         });
     
     }
