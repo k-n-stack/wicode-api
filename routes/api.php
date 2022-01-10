@@ -27,11 +27,15 @@ use App\Http\Controllers\API\MessageController;
 //API route for register new user
 // Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 
-//API route for login user
+// API route for login user
 Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
 
-//Protecting Routes
+// GET request to 'login' route is forbidden.
+Route::get('login', [ 'as' => 'login', 'uses' => function() {
+    return "unauthorized";
+}]);
 
+//Protecting Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
