@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\User;
 
 class ArticleController extends Controller
 {
@@ -40,6 +42,11 @@ class ArticleController extends Controller
         return $Article;
     }
 
+    // public function showByCategory(Request $request)
+    // {
+    //     $test = Article::where('id')
+    // }
+
     /**
      * Update the specified resource in storage.
      *
@@ -61,5 +68,15 @@ class ArticleController extends Controller
     public function destroy(Article $Article)
     {
         $Article->delete();
+    }
+
+    public function getArticlesByCategory($id) {
+        return Category::find($id)->articles;
+    }
+
+    public function getArticlesByUser($id) {
+        // return User::find($id);
+        ///
+        return User::find($id)->article;
     }
 }
