@@ -33,7 +33,7 @@ use App\Models\Category;
 // API route for login user
 Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
 
-// API route go register a user
+// API route to register a user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 
 // GET request to 'login' route is forbidden.

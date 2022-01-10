@@ -75,8 +75,6 @@ class ArticleController extends Controller
     }
 
     public function getArticlesByUser($id) {
-        // return User::find($id);
-        ///
         return User::find($id)->article;
     }
 }
