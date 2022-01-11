@@ -70,13 +70,33 @@ class ArticleController extends Controller
         $Article->delete();
     }
 
-    public function getArticlesByCategory($id) {
-        return Category::find($id)->articles;
+    /**
+     * Request body must have a "category_id" key.
+     * Otherwise, return error.
+     */
+    public function getArticlesByCategory(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('category_id', $_body)) {
+            return ['error' => 'no category provided'];
+        }
+
+        $_categoryId = $_body['category_id'];
+         
+        return Category::find($_categoryId)->articles;
     }
 
-    public function getArticlesByUser($id) {
-        // return User::find($id);
-        ///
-        return User::find($id)->article;
+    /**
+     * Request body must have a "user_id" key.
+     * Otherwise, return error.
+     */
+    public function getArticlesByUser(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('user_id', $_body)) {
+            return ['error' => 'no user provided'];
+        }
+
+        $_userId = $_body['user_id'];
+
+        return User::find($_userId)->articles;
     }
 }

@@ -43,8 +43,7 @@ Route::get('login', [ 'as' => 'login', 'uses' => function() {
 
 // test free route
 Route::get('test', function() {
-    $test = Category::find(2);
-    return $test->articles;
+    return ['test' => 'test'];
 });
 
 // Protected Routes
@@ -53,25 +52,42 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
-    // API route for logout user
+    ### API route for logout user ###
+    #################################
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 
-    // API route for articles
+    ### API route for articles ###
+    ##############################
     Route::apiResource('article', ArticleController::class);
-    Route::get('category/{id}/articles', [ArticleController::class, 'getArticlesByCategory']);
-    Route::get('user/{id}/articles', [ArticleController::class, 'getArticlesByUser']);
+    // Get all articles from one category.
+    Route::post('category/articles', [ArticleController::class, 'getArticlesByCategory']);
+    // Get all articles from one user.
+    Route::post('user/articles', [ArticleController::class, 'getArticlesByUser']);
 
-    // API route for category
+
+    ### API route for category ###
+    ##############################
     Route::apiResource('category', CategoryController::class);
 
-    // API route for comments
+
+    ### API route for comments ###
+    ##############################
     Route::apiResource('comment', CommentController::class);
-    Route::get('article/{id}/comments', [CommentController::class, 'getCommentsByArticle']);
+    // Get all comments from one article.
+    Route::post('article/comments', [CommentController::class, 'getCommentsByArticle']);
+    // Get all comments from one user.
+    Route::post('user/comments', [CommentController::class, 'getCommentsByUser']);
 
-    // API route for messages
+
+    ### API route for messages ###
+    ##############################
     Route::apiResource('message', MessageController::class);
-    Route::get('user/{id}/messages', [MessageController::class, 'getMessageByUser']);
+    // Get all message from one user.
+    Route::post('user/messages', [MessageController::class, 'getMessagesByUser']);
 
-    // API route for user
+
+    ### API route for user ###
     Route::apiResource('user', UserController::class);
+    // Get all user from one role.
+    Route::post('role/users', [UserController::class, 'getUsersByRole']);
 });
