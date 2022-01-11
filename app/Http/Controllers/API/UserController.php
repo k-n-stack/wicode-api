@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -40,5 +41,22 @@ class UserController extends Controller
     {
         $user->update($request->all());
     }
+
+    /**
+     * Request body must have a "role_id" key
+     * return error otherwise
+     */
+    public function getUsersByRole(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('role_id', $_body)) {
+            return ['error' => 'no role provided'];
+        }
+
+        $_roleId = $_body['role_id'];
+
+        return Role::find($_roleId)->users;
+    }
+
+
 
 }

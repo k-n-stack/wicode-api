@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\comment;
+use App\Models\Comment;
+use App\Models\Article;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -61,5 +63,31 @@ class CommentController extends Controller
     public function destroy(comment $comment)
     {
         $comment->delete();
+    }
+
+    /**
+     * Request body must have a "article_id" key,
+     * return error otherwise
+     */
+    public function getCommentsByArticle(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('article_id', $_body)) {
+            return ['error' => 'no article provided'];
+        }
+
+        $_articleId = $_body['article_id'];
+
+        return Article::find($_articleId)->comments;
+    }
+
+    public function getCommentsByUser(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('user_id', $_body)) {
+            return ['error' => 'no user provided'];
+        }
+
+        $_userId = $_body['user_id'];
+
+        return User::find($_userId)->comments;
     }
 }

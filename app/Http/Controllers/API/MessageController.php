@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\message;
+use App\Models\Message;
+use App\Models\User;
 
 class MessageController extends Controller
 {
@@ -63,5 +64,20 @@ class MessageController extends Controller
     public function destroy(message $message)
     {
         $message->delete();
+    }
+
+    /**
+     * Request must have a "user_id" key
+     * return error otherwise
+     */
+    public function getMessagesByUser(Request $request) {
+        $_body = json_decode($request->getContent(), true);
+        if(!array_key_exists('user_id', $_body)) {
+            return ['error' => 'no user provided'];
+        }
+
+        $_userId = $_body['user_id'];
+
+        return User::find($_userId)->messages;
     }
 }
