@@ -25,7 +25,9 @@ use App\Models\Category;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
+Route::fallback(function() {
+    return view("welcome");
+});
 
 //API route for register new user
 // Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
@@ -38,25 +40,14 @@ Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'regis
 
 // GET request to 'login' route is forbidden.
 Route::get('login', [ 'as' => 'login', 'uses' => function() {
-    return "unauthorized";
+    return view("welcome");
 }]);
 
 // test free route
 Route::get('test', function() {
     return ['test' => 'test'];
 });
-
-// Protected Routes
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
-        return auth()->user();
-    });
-
-    ### API route for logout user ###
-    #################################
-    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
-
-    ### API route for articles ###
+  ### API route for articles ###
     ##############################
     Route::apiResource('article', ArticleController::class);
     // Get all articles from one category.
@@ -78,6 +69,21 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Get all comments from one user.
     Route::post('user/comments', [CommentController::class, 'getCommentsByUser']);
 
+        ### API route for user ###
+    Route::apiResource('user', UserController::class);
+        // Get all user from one role.
+    Route::post('role/users', [UserController::class, 'getUsersByRole']);
+
+
+// Protected Routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+
+    ### API route for logout user ###
+    #################################
+    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 
     ### API route for messages ###
     ##############################
@@ -86,8 +92,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('user/messages', [MessageController::class, 'getMessagesByUser']);
 
 
-    ### API route for user ###
-    Route::apiResource('user', UserController::class);
-    // Get all user from one role.
-    Route::post('role/users', [UserController::class, 'getUsersByRole']);
+
 });

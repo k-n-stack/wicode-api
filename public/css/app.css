@@ -1,0 +1,240 @@
+body{
+    overflow: hidden;
+    background: 
+    linear-gradient(217deg, rgb(223, 20, 20), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0, 255, 255, 0.8), rgba(0,0,255,0) 70.71%);
+    animation: fond 1s infinite ;
+    height: 100vh;
+}
+.antialiased{
+   
+    font-size:12em; 
+    height: 100vh;
+}
+.container{
+    height: 80%;
+    display:flex;
+    justify-content:space-between;
+}
+.center_title{
+    text-align: center;
+    font-size: 50%;
+    height: 25vh;
+}
+.fleur{
+
+    width: 100%;
+    position: absolute;
+    bottom: 0;   
+    right: 0;
+}
+.chicken{
+    height: 80%;
+   
+}
+.duke{
+    height: 80%;
+}
+.explosion{
+    height: 10%;
+    position: absolute;
+    top:50%;
+    left: 10%;
+    animation: explosion 10s infinite ;
+    z-index: 999;
+}
+
+.senders_tete{
+    position: absolute;
+    top:20%;
+    right: 1%;
+    animation: senders_tete 10s infinite ;
+}
+.balle{
+    height: 3%;
+    position: absolute;
+    top:55%;
+    left: 10%;
+    z-index: 998;
+    opacity: 0;
+    animation: balle 1s  ;
+}
+.balle2{
+    height: 3%;
+    position: absolute;
+    top:53%;
+    left: 5%;
+    z-index: 998;
+    opacity: 0;
+    animation: balle 1s  ;
+}
+.fries{
+    height: 10%;
+    position: absolute;
+    top:50%;
+    left: 80%;
+    animation: fries 2s infinite ;
+
+}
+.fuck_yeah{
+    position: absolute;
+    top:12%;
+    left: 15%;
+    font-size: 0.5em;
+    background-color: white;
+    color: rgb(255, 36, 182);
+    padding:8px;
+    
+    animation: fuck 10s infinite ;
+    opacity: 0;
+}
+@keyframes fond {
+    0% {
+    background: 
+        linear-gradient(217deg, rgb(223, 20, 20), rgba(255,0,0,0) 70.71%),
+        linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+        linear-gradient(336deg, rgba(0, 255, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+25% {
+    background: 
+        linear-gradient(217deg, rgb(223, 142, 20), rgba(255,0,0,0) 70.71%),
+        linear-gradient(127deg, rgba(0, 255, 149, 0.8), rgba(0,255,0,0) 70.71%),
+        linear-gradient(336deg, rgba(55, 0, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+50% {
+    background:     
+        linear-gradient(217deg, rgb(206, 20, 223), rgba(255,0,0,0) 70.71%),
+        linear-gradient(127deg, rgba(0, 119, 255, 0.8), rgba(0,255,0,0) 70.71%),
+        linear-gradient(336deg, rgba(229, 255, 0, 0.8), rgba(0,0,255,0) 70.71%);
+}
+75% {
+    background: 
+        linear-gradient(217deg, rgb(20, 223, 213), rgba(255,0,0,0) 70.71%),
+        linear-gradient(127deg, rgba(255, 166, 0, 0.8), rgba(0,255,0,0) 70.71%),
+        linear-gradient(336deg, rgba(89, 0, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+
+
+100% {
+    background: 
+        linear-gradient(217deg, rgb(223, 20, 20), rgba(255,0,0,0) 70.71%),
+        linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+        linear-gradient(336deg, rgba(0, 255, 255, 0.8), rgba(0,0,255,0) 70.71%);
+    
+}}
+@keyframes fries {
+    0% {
+    
+        transform:rotate(250deg)
+                    translate(0px)
+                    rotate(260deg);
+}
+
+
+100% {
+    transform:rotate(180deg)
+      translate(1400px)
+      rotate(3000deg);
+    
+   
+}}
+
+@keyframes fuck {
+    69% {
+    
+        opacity: 0;
+}
+70%{
+    opacity: 1;
+}
+
+100% {
+  opacity: 1;
+    
+   
+}}
+
+/* animation chicken */
+
+@keyframes chicken {
+0% {
+    
+opacity: 1;
+
+}
+70% {
+    opacity: 1;
+
+}
+
+100% {
+    opacity: 0;
+
+}
+}
+/* animation balle */
+
+@keyframes balle {
+    0% {
+        opacity: 1;
+        transform: translate(0px, 0vh);
+
+}
+
+100% {
+    opacity: 1;
+    transform: translate(1400px, 0vh);
+   
+}}
+
+/* animation explosion */
+@keyframes explosion {
+    0% {
+    
+        transform: translate(-50px, 0vh);
+        opacity: 0;
+
+}
+
+
+60%{
+    width   : 500px;
+    height: 500px;
+    margin-top: -200px;
+    opacity: 0;
+
+}
+
+
+100% {
+    transform: translate(1000px, 0vh);
+    width   : 900px;
+    height: 900px;
+    margin-top: -400px;
+    opacity: 1;
+}}
+/* sender tete */
+@keyframes senders_tete {
+
+    0% {
+    
+        transform: translate(0px, 0vh);
+        opacity: 0;
+
+}
+
+
+70%{
+    transform: translate(0px, 0vh);
+    opacity: 0;
+
+}
+
+
+100% {
+    transform: translate(-1000px, 0vh)
+    rotate(-0.7turn);
+
+    opacity: 1;
+}}
